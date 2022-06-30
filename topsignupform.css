@@ -12,7 +12,7 @@ body{
 
 .container{
     justify-self: center;
-    width: 80%;
+    width: 78%;
     display: flex;
     flex-direction: row;
 
@@ -22,7 +22,7 @@ body{
     height: 100vh;
     background-size: cover;
     background-image: url("kalligas.jpg");
-     width: 50%;
+     width: 35%;
      padding-top: 25vh;
 }
 
@@ -61,7 +61,7 @@ h6{
 
 .contenter{
     background-color: rgb(249, 214, 196);
-    width: 50%;
+    width: 65%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -77,6 +77,16 @@ h6{
     background-color: rgb(252, 242, 237);
     box-shadow: 5px;
 }
+form{
+    padding: 1em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .5em;
+}
+/* form > * {
+    grid-template-columns: 1fr 1fr 1fr; */
+}
+
 
 .sinker{
 
