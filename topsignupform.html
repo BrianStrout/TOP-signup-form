@@ -36,7 +36,7 @@
                 <form id="formActual" action="post">
                     <div class="grid__row">
                     <label for="firstN">First Name:</label><br>
-                    <input id="firstN" type="text" class="form__input" autofocus placeholder="Not Brian?">
+                    <input required="yes" id="firstN" type="text" class="form__input" autofocus placeholder="Not Brian?">
                 </div>
                 <div class="grid__row">
                     <label for="lastN">Last Name:</label><br>
@@ -61,7 +61,7 @@
                 </form>
             </div>
             <div class="sinker">
-                <button>Submit!</button>
+                <button id="subBut" disabled>Submit!</button>
                 <p> Already a member you say??? <a href="#">Log In</a></p>
             </div>
 
@@ -70,3 +70,61 @@
     </div>
 </body>
 </html>
+
+
+<script>
+
+
+//form input validation
+//name
+//lastname
+function verName(str){
+    regexp = /^[A-Z|a-z]+$/;
+   if (regexp.test(str)){
+        console.log("pass");
+   }else{
+       console.log("fail");
+   }
+}
+
+//email UPDATE!
+function verEmail(str){  
+    regexp=/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/
+    if (regexp.test(str)){
+        console.log("email");
+   }else{
+       console.log("not a valid email");
+   }
+}
+
+//tele
+function verTele(tele){
+    regexp=/\+?\d{0,3}?-?\d{3}-?\d{3}-?\d{4}/
+    if (regexp.test(str)){
+        console.log("email");
+   }else{
+       console.log("not a valid email");
+   }
+}
+
+
+//password
+
+
+//you could run a blur and or focus or input???? check on validity for each blur
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
