@@ -19,17 +19,21 @@ body{
 }
 
 .moodSetter{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
     height: 100vh;
     background-size: cover;
     background-image: url("kalligas.jpg");
-     width: 35%;
-     padding-top: 25vh;
+    width: 35%;
+    padding-top: 25vh;
 }
 
 .brand{
    /* min-height: 200px; */
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: rgb(0,0,0, .4);
     align-content: center;
     text-align: center;
@@ -38,25 +42,33 @@ body{
 
 #headshot{
     display: inline-block;
-    width: 150px;
+    width: 100px;
     border-radius: 75px;
-    margin: 20px;
+    margin: 10px;
+    margin-right: 10px;
 }
 .introducing{
     display: inline;
+    /* background-color: brown; */
+    text-align: left;
 }
 h2{
     display: inline;
-    font-size: 50px;
+    font-size: 35px;
 }
 h6{
     font-size: 18px;
     text-decoration: underline;
 }
+.photocred{
+    display: flex;
+    justify-content: center;
+}
 .photocred p{
-    color: antiquewhite;
+    color: rgb(250, 215, 241);
     position: fixed;
     bottom: 0;
+    text-align: center;
 }
 
 .contenter{
@@ -66,28 +78,43 @@ h6{
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    padding: 25px;
 
 }
+.hook,
+.line,
+.sinker{
+    padding-top: 1.5em;
+    padding-left: 3em;
+    padding-bottom: 1.5em;
+}
 .hook{
-
+padding-bottom: 2em;
 }
 
 .line{
+    width: 100%;
     background-color: rgb(252, 242, 237);
     box-shadow: 5px;
 }
+
 form{
-    padding: 1em;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: .5em;
 }
-/* form > * {
-    grid-template-columns: 1fr 1fr 1fr; */
+form input{
+    width: 20em;
+    height: 2em;
 }
 
+.sinker button{
+    width: 16em;
+    height: 2.5em;
+    color: rgb(0, 0, 0);
+    background-color: rgb(84, 240, 251);
+    border-radius: 6px;
 
-.sinker{
-
+}
+.sinker p{
+    text-align: center;
 }
