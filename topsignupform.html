@@ -36,7 +36,7 @@
                 <form id="formActual" action="post">
                     <div class="grid__row">
                     <label for="firstN">First Name:</label><br>
-                    <input required="yes" id="firstN" type="text" class="form__input" autofocus placeholder="Not Brian?">
+                    <input id="firstN" type="text" class="form__input" autofocus placeholder="Not Brian?">
                 </div>
                 <div class="grid__row">
                     <label for="lastN">Last Name:</label><br>
@@ -73,15 +73,32 @@
 
 
 <script>
-
-
+let verFirstNamePass = false;
+let verLastNamePass = false;
+let verEmailPass = false;
+let verTelePass = false;
+let verPswdPass = false;
+let verPswdMatch = false;
+const firstPass= document.getElementById("setPass");
+const secondPass= document.getElementById("confPass");
+const subBut= document.getElementById("subBut");
 //form input validation
 //name
 //lastname
-function verName(str){
+function verFirstName(str){
     regexp = /^[A-Z|a-z]+$/;
    if (regexp.test(str)){
         console.log("pass");
+        return true;
+   }else{
+       console.log("fail");
+   }
+}
+function verLastName(str){
+    regexp = /^[A-Z|a-z]+$/;
+   if (regexp.test(str)){
+        console.log("pass");
+        return true;
    }else{
        console.log("fail");
    }
@@ -91,29 +108,182 @@ function verName(str){
 function verEmail(str){  
     regexp=/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/
     if (regexp.test(str)){
-        console.log("email");
+        return true;
    }else{
        console.log("not a valid email");
+       return false;   
    }
 }
 
 //tele
 function verTele(tele){
     regexp=/\+?\d{0,3}?-?\d{3}-?\d{3}-?\d{4}/
-    if (regexp.test(str)){
-        console.log("email");
+    if (regexp.test(tele)){
+        return true;
    }else{
-       console.log("not a valid email");
+    return false;
+    console.log("not a valid number");
    }
 }
 
-
 //password
+function verPass(str){
+        let valid= true;
+                // console.log(str.length);
+            //length
+                if (str.length>=8 && str.length<=14){
+                        console.log("length:pass");
+                }else{
+                    console.log("length:fail");
+                    valid = false; return false;
+                }
+            //char
+                regChar=/\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\?|\<|\>/
+                if (regChar.test(str)){
+                        console.log("Spec. Char Pass");
+                }else{
+                    console.log("Spec. Char Fail");
+                    valid = false; return false;
+                }
+            //num
+                regNum=/\d/
+                if (regNum.test(str)){
+                        console.log("number pass");
+                }else{
+                    console.log("number fail");
+                    valid =false
+                }
+            //upper
+                regUpp=/[A-Z]/;
+                if (regUpp.test(str)){
+                        console.log("Upper pass");
+                }else{
+                    console.log("Upper fail");
+                    valid =false
+                }
+console.log("current valid is: " + valid);
+return valid;
+}
 
+function verMatch(str){
+    if( firstPass.value === secondPass.value){
+        return true;
+    }else{return false;}
+    }
+
+
+function allFieldsValid(){
+    if(verFirstNamePass && verLastNamePass&& verLastNamePass && verEmailPass && verTelePass && verPswdPass && verPswdMatch){
+        console.log("all fields pass!")
+        subBut.disabled = false;
+    }else{
+        console.log("field failure");
+        subBut.disabled = true;
+    }
+// console.log("a f v ran")
+}
+
+
+function updateToInvalid(str){
+console.log(str)
+
+str.classList.add("invalid")
+}
+
+
+function updateToValid(){
+str.classList.remove("invalid")   
+}
 
 //you could run a blur and or focus or input???? check on validity for each blur
 
 
+// This one is cool, when you remove focus from an input, this motion is called blur. This listener listens
+// for the defocus and then runs the test(is this a sign-up attempt[using the id to determine] and if so... is
+// it) more than 0 characters(have started typing) but less than 10(the req. min for a user name)
+document.querySelectorAll(".form__input").forEach(inputElement => {
+        inputElement.addEventListener("blur", e =>{
+            
+        if(e.target.id === "firstN"){
+            if(verFirstName(e.target.value)===true){
+                    verFirstNamePass = true;
+                    firstN.classList.remove("invalid");                    
+                    allFieldsValid();    
+                }else{
+                    verFirstNamePass = false;
+                    firstN.classList.add("invalid");
+                    allFieldsValid();       
+                }
+            }else if(e.target.id === "lastN"){
+                    if(verLastName(e.target.value)===true){
+                    verLastNamePass = true;
+                    lastN.classList.remove("invalid");
+                    allFieldsValid();
+                    }else{
+                    verLastNamePass = false;
+                    lastN.classList.add("invalid");   
+                    allFieldsValid();       
+                }
+            }else if(e.target.id === "email"){
+                    if(verEmail(e.target.value)===true){
+                    verEmailPass = true;
+                    console.log("email...")
+                    email.classList.remove("invalid");
+                    allFieldsValid();
+                    }else{
+                    email.classList.add("invalid");
+                    verEmailPass=false;
+                    allFieldsValid();   
+                }
+
+            }else if(e.target.id === "phone"){
+                    if(verTele(e.target.value)===true){
+                    verTelePass = true;
+                    console.log("tele...")
+                    phone.classList.remove("invalid");
+                    allFieldsValid();
+                    }else{
+
+                    verTelePass=false;
+                    phone.classList.add("invalid");
+                    allFieldsValid();       
+                }
+            }else if(e.target.id === "setPass"){
+                    if(verPass(e.target.value)===true){
+                    verPswdPass=true;
+                    console.log("set pass...");
+                    setPass.classList.remove("invalid");
+                    allFieldsValid();
+                    }else{
+
+                    verPswdPass=false;
+                    setPass.classList.add("invalid")
+                    allFieldsValid();       
+                }
+                    
+            }else if(e.target.id === "confPass"){
+                    if(verMatch(e.target.value)===true){    
+                    verPswdMatch = true;
+                    console.log("confblurred")
+                    confPass.classList.remove("invalid");
+                    allFieldsValid();
+                    }else{
+                    
+                    verPswdMatch = false;  
+                    confPass.classList.add("invalid");
+                    allFieldsValid();      
+                }
+        }else{
+                console.log("bug")
+        }
+// Here we listen for input and clear that message, making it so if they activate the error but then add
+// more characters it clears out the demand message
+
+            // inputElement.addEventListener("input", e => {
+            //     clearInputError(inputElement);
+        // })
+    })
+})
 
 
 
