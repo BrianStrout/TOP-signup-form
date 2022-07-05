@@ -31,7 +31,7 @@
                     and meetings, and of course ice cream. <br><br>See you inside!
                 </p>
             </div>
-            <div class="line">
+            <div id="signup_form" class="line">
                 <h4>Let's!</h4>
                 <form id="formActual" action="post">
                     <div class="grid__row">
@@ -62,15 +62,40 @@
             </div>
             <div class="sinker">
                 <button id="subBut" disabled>Submit!</button>
-                <p> Already a member you say??? <a href="#">Log In</a></p>
+                <p id="memberInq"> Already a member you say??? <a id="switchToLogin" href="#">Log In</a></p>
             </div>
-
         </div>
 
-    </div>
+                                        <!-- existing user login -->
+
+        <div class="contenter form--hidden" id="existUser">
+            <div class="hook">
+                <h6>Welcome Back!</h6>
+                <p>You look good..... <br> You lose weight? Discover yoga? Start taking probiotics and drink more water...<br><br>See you inside!
+                </p>
+            </div>
+            <div id="signup_form" class="login">
+                <h4>Let's!</h4>
+                <form id="formActual" action="post">
+                    <div class="grid__row">
+                        <label for="email">Email:</label><br>
+                        <input id="email" type="email" class="form__input" autofocus placeholder="Notbrian@Strout.co?">
+                    </div>
+                <div class="grid__row">
+                    <label for="lastN">Password</label><br>
+                    <input id="lastN" type="password" class="form__input" autofocus placeholder="shhhhh">
+                </div>
+
+                </form>
+            </div>
+            <div class="sinker">
+                <button id="logBut" disabled>Log In!</button>
+                <p id="memberInq">Not a member you say??? <a id="switchToCreate" href="#">Create Account</a></p>
+            </div>
+        </div>
+        </div>
 </body>
 </html>
-
 
 <script>
 let verFirstNamePass = false;
@@ -82,9 +107,19 @@ let verPswdMatch = false;
 const firstPass= document.getElementById("setPass");
 const secondPass= document.getElementById("confPass");
 const subBut= document.getElementById("subBut");
+const firstN = document.getElementById("firstN");
+const lastN = document.getElementById("lastN");
+const email = document.getElementById("email");
+const tele =document.getElementById("tele");
+const setPass = document.getElementById("setPass");
+const confPass = document.getElementById("confPass"); 
+const newUser =  document.getElementById("newUser");
+const existUser = document.getElementById("existUser");
+const switchToLogin = document.getElementById("switchToLogin");
+const switchToCreate = document.getElementById("switchToCreate");
+
 //form input validation
 //name
-//lastname
 function verFirstName(str){
     regexp = /^[A-Z|a-z]+$/;
    if (regexp.test(str)){
@@ -94,6 +129,7 @@ function verFirstName(str){
        console.log("fail");
    }
 }
+//lastname
 function verLastName(str){
     regexp = /^[A-Z|a-z]+$/;
    if (regexp.test(str)){
@@ -103,7 +139,6 @@ function verLastName(str){
        console.log("fail");
    }
 }
-
 //email UPDATE!
 function verEmail(str){  
     regexp=/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/
@@ -114,7 +149,6 @@ function verEmail(str){
        return false;   
    }
 }
-
 //tele
 function verTele(tele){
     regexp=/\+?\d{0,3}?-?\d{3}-?\d{3}-?\d{4}/
@@ -125,7 +159,6 @@ function verTele(tele){
     console.log("not a valid number");
    }
 }
-
 //password
 function verPass(str){
         let valid= true;
@@ -164,14 +197,11 @@ function verPass(str){
 console.log("current valid is: " + valid);
 return valid;
 }
-
 function verMatch(str){
     if( firstPass.value === secondPass.value){
         return true;
     }else{return false;}
     }
-
-
 function allFieldsValid(){
     if(verFirstNamePass && verLastNamePass&& verLastNamePass && verEmailPass && verTelePass && verPswdPass && verPswdMatch){
         console.log("all fields pass!")
@@ -182,25 +212,7 @@ function allFieldsValid(){
     }
 // console.log("a f v ran")
 }
-
-
-function updateToInvalid(str){
-console.log(str)
-
-str.classList.add("invalid")
-}
-
-
-function updateToValid(){
-str.classList.remove("invalid")   
-}
-
-//you could run a blur and or focus or input???? check on validity for each blur
-
-
-// This one is cool, when you remove focus from an input, this motion is called blur. This listener listens
-// for the defocus and then runs the test(is this a sign-up attempt[using the id to determine] and if so... is
-// it) more than 0 characters(have started typing) but less than 10(the req. min for a user name)
+// BLUR CHECK
 document.querySelectorAll(".form__input").forEach(inputElement => {
         inputElement.addEventListener("blur", e =>{
             
@@ -211,8 +223,10 @@ document.querySelectorAll(".form__input").forEach(inputElement => {
                     allFieldsValid();    
                 }else{
                     verFirstNamePass = false;
+                if(e.target.value.length>0){
                     firstN.classList.add("invalid");
-                    allFieldsValid();       
+                    allFieldsValid(); 
+                }
                 }
             }else if(e.target.id === "lastN"){
                     if(verLastName(e.target.value)===true){
@@ -221,8 +235,11 @@ document.querySelectorAll(".form__input").forEach(inputElement => {
                     allFieldsValid();
                     }else{
                     verLastNamePass = false;
+
+                if(e.target.value.length>0){
                     lastN.classList.add("invalid");   
                     allFieldsValid();       
+                }
                 }
             }else if(e.target.id === "email"){
                     if(verEmail(e.target.value)===true){
@@ -231,10 +248,12 @@ document.querySelectorAll(".form__input").forEach(inputElement => {
                     email.classList.remove("invalid");
                     allFieldsValid();
                     }else{
-                    email.classList.add("invalid");
                     verEmailPass=false;
+                if(e.target.value.length>0){
+                    email.classList.add("invalid");
                     allFieldsValid();   
                 }
+                }   
 
             }else if(e.target.id === "phone"){
                     if(verTele(e.target.value)===true){
@@ -245,9 +264,12 @@ document.querySelectorAll(".form__input").forEach(inputElement => {
                     }else{
 
                     verTelePass=false;
+
+                if(e.target.value.length>0){
                     phone.classList.add("invalid");
                     allFieldsValid();       
                 }
+            }
             }else if(e.target.id === "setPass"){
                     if(verPass(e.target.value)===true){
                     verPswdPass=true;
@@ -257,10 +279,11 @@ document.querySelectorAll(".form__input").forEach(inputElement => {
                     }else{
 
                     verPswdPass=false;
+                if(e.target.value.length>0){
                     setPass.classList.add("invalid")
                     allFieldsValid();       
                 }
-                    
+            }    
             }else if(e.target.id === "confPass"){
                     if(verMatch(e.target.value)===true){    
                     verPswdMatch = true;
@@ -270,20 +293,45 @@ document.querySelectorAll(".form__input").forEach(inputElement => {
                     }else{
                     
                     verPswdMatch = false;  
+                if(e.target.value.length>0){
                     confPass.classList.add("invalid");
                     allFieldsValid();      
                 }
+            }
         }else{
                 console.log("bug")
         }
+
 // Here we listen for input and clear that message, making it so if they activate the error but then add
 // more characters it clears out the demand message
 
             // inputElement.addEventListener("input", e => {
             //     clearInputError(inputElement);
         // })
+
+
+// function switchLoginSignup(){
+
+//     if(line
+//     login
+
+// }
+
     })
 })
+document.querySelector("#switchToLogin").addEventListener('click', e => {
+        e.preventDefault();
+        newUser.classList.add("form--hidden");
+        existUser.classList.remove("form--hidden");
+    });
+    document.querySelector("#switchToCreate").addEventListener('click', e => {
+        e.preventDefault();
+        newUser.classList.remove("form--hidden");
+        existUser.classList.add("form--hidden");
+    });
+
+
+
 
 
 

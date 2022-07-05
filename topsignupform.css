@@ -70,8 +70,8 @@ h6{
     bottom: 0;
     text-align: center;
 }
-
-.contenter{
+.contenter,
+.contenter2{
     background-color: rgb(249, 214, 196);
     width: 65%;
     display: flex;
@@ -82,6 +82,7 @@ h6{
 }
 .hook,
 .line,
+.login,
 .sinker{
     padding-top: 1.5em;
     padding-left: 3em;
@@ -91,30 +92,73 @@ h6{
 padding-bottom: 2em;
 }
 
-.line{
+.line,
+.login{
     width: 100%;
     background-color: rgb(252, 242, 237);
-    box-shadow: 5px;
+    box-shadow: 0px 2px 5px #6a6a69;
 }
 
-form{
+.line form{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: .5em;
+}
+.login form{
+    display: grid;
+    grid-template-columns: 1fr;
     gap: .5em;
 }
 form input{
     width: 20em;
     height: 2em;
 }
+#firstN:focus{
 
+}
+#firstN::after{
+    content: "hey there!";
+
+}
+
+.invalid{
+    border-color: rgb(255, 88, 88);
+}
+
+
+.login button,
 .sinker button{
     width: 16em;
     height: 2.5em;
     color: rgb(0, 0, 0);
-    background-color: rgb(84, 240, 251);
+    background-color: rgb(252,242,237);
     border-radius: 6px;
-
 }
+
+.login button:hover{
+transform: scale(1.1);
+background-color: white;
+box-shadow: 1px 2px 3px #6a6a69;
+}
+
+
+.sinker button:disabled{
+    color: #a7a7a7;
+}
+
+
 .sinker p{
     text-align: center;
 }
+
+.form--hidden{
+    display: none;
+}
+
+
+/* 
+@media only screen and (max-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+  } */
