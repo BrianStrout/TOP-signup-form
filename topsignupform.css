@@ -156,9 +156,52 @@ box-shadow: 1px 2px 3px #6a6a69;
 }
 
 
-/* 
+
 @media only screen and (max-width: 600px) {
-    body {
-      background-color: lightblue;
+    
+    
+    body,
+    .container, 
+    .contenter{
+    background-size: cover;
+    background-image: url("kalligas.jpg");
     }
-  } */
+  }
+
+  .container{
+    width: 100%;
+    flex-direction: column;
+  }
+
+
+
+  .moodSetter{
+    height: 100px;
+    /* background-size: cover; */
+    /* background-image: url("kalligas.jpg");*/
+    background-color: aquamarine;
+    width: 100%; 
+    padding-top: 0vh;
+  }
+
+  .photocred{
+    display: none;
+  }
+
+
+
+  .contenter{
+    width: 100%;
+  }
+  .line form{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .5em;
+}
+
+                                            /* adjust text size
+                                            fix margins to center text 
+                                            center button
+                                            adjust text for bottom div
+                                            cred photo
+                                            figure out top margin issue? */
