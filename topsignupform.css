@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    --calc1: calc(3.4 * vw);
+    --calc2: calc(.01 * var(--calc1));
+    --calClamp: clamp(0% , 78vw );
 }
 body{
     background-color: rgb(2, 213, 228);
@@ -12,7 +15,8 @@ body{
 
 .container{
     justify-self: center;
-    width: 78%;
+     width: 78%;
+    /* width: var(--calClamp); */
     display: flex;
     flex-direction: row;
 
@@ -70,6 +74,12 @@ h6{
     bottom: 0;
     text-align: center;
 }
+.mobilePhotocred p{
+    color: rgb(250, 215, 241);
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+}
 .contenter,
 .contenter2{
     background-color: rgb(249, 214, 196);
@@ -83,9 +93,11 @@ h6{
 .hook,
 .line,
 .login,
-.sinker{
+.sinker,
+.signup_form{
     padding-top: 1.5em;
     padding-left: 3em;
+    padding-right: 3em;
     padding-bottom: 1.5em;
 }
 .hook{
@@ -155,49 +167,97 @@ box-shadow: 1px 2px 3px #6a6a69;
     display: none;
 }
 
+.mobilePhotoCred{
+    display: none;
+}
 
 
-@media only screen and (max-width: 600px) {
-    
-    
+
+                                            /* media changes */
+@media only screen and (max-width: 1000px){
+
+ .container{
+    width: 100%;
+ }
+    /* .container{
+        background-color: fuchsia;
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        /* justify-content: center; */
+    }
+/* 
+.moodSetter,
+.contenter{
+    width: 78%;
+}
+
+.moodSetter{
+    height: 25vh;
+} */
+
+
+
+
+/* 
+@media only screen and (min-width: 601px) {
+.mobilePhotocred{display: none;}
+} */
+
+@media only screen and (max-width: 910px) {
+        
     body,
     .container, 
     .contenter{
     background-size: cover;
     background-image: url("kalligas.jpg");
     }
-  }
-
-  .container{
+    
+    .container{
     width: 100%;
     flex-direction: column;
-  }
-
-
-
-  .moodSetter{
+    }
+    .moodSetter{
     height: 100px;
     /* background-size: cover; */
     /* background-image: url("kalligas.jpg");*/
     background-color: aquamarine;
     width: 100%; 
-    padding-top: 0vh;
-  }
-
-  .photocred{
+    padding-top: 0px;
+    margin-bottom: 0px;
+    }
+    .brand{
+        min-height: 100px;
+    }
+    #headshot{
+        padding: 5px;
+    }
+    .photocred{
     display: none;
-  }
-
-
-
-  .contenter{
+    }
+    .contenter{
+        margin-top: 1px;
     width: 100%;
-  }
-  .line form{
+    }
+    .line form{
     display: grid;
     grid-template-columns: 1fr;
     gap: .5em;
-}
+    }
+
+    .mobilePhotoCred{
+        display: flex;
+        justify-content: center;
+        color: white;
+    }
+
+    .sinker{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: white;
+    }
 
                                             /* adjust text size
                                             fix margins to center text 
@@ -205,3 +265,28 @@ box-shadow: 1px 2px 3px #6a6a69;
                                             adjust text for bottom div
                                             cred photo
                                             figure out top margin issue? */
+
+
+
+@media only screen and (max-width:360px){
+
+/* minimium layout */
+.container{
+    width: 100%;
+}
+.contenter{
+    padding-left: 1em;
+    padding-right: 1em;
+    
+}
+.brand{
+    width: 100%;
+}
+.hook{
+    min-width: 310px;
+}
+
+
+
+
+}
